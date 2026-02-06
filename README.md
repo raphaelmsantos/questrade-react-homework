@@ -38,10 +38,10 @@ In order to store data about lotteries you need a database. For this homework, y
   After that, create a `.env` file with the contents:
 
   ```
-    REDIS_URL="redis://db:token@address:6379
+    REDIS_URL="rediss://db:token@address:6379
   ```
 
-  which you can copy from Upstash directly after creating a free database.
+  which you can copy from Upstash directly after creating a free database by pressing the "TCP" badge.
 
   Now, in order to run the server just run `npm run dev` inside the `backend` directory.
 
@@ -120,7 +120,18 @@ To make things simples for feature implementation and focus on React, we will be
 </details>
 
 <details>
-  <summary><b>Step 5: Template cleanup (Optional)</b></summary><br>
+  <summary><b>Step 5: Add .env file in web directory</b></summary><br>
+
+  The frontend needs to know which api server to connect to, so let's create a .env file:
+
+  ```
+  VITE_API_URL=http://localhost:3000
+  ```
+
+</details>
+
+<details>
+  <summary><b>Step 6: Template cleanup (Optional)</b></summary><br>
 
 The web project template includes starting code that we don’t want - you can remove some unnecessary code, files and assets in this step. This is an optional step because you’re going to change it anyway while working on various features.
 </details>
