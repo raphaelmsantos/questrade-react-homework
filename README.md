@@ -145,31 +145,31 @@ Given the UI design implement Add a lottery feature.
 <details>
   <summary><b>Add lottery FAB button</b></summary><br>
 
-![Screenshot 2023-07-10 at 15 06 34](https://github.com/callstack-workshops/abbott-module-3-homework/assets/50460088/6044cdf1-07b9-421b-a6b0-98dc005f2324)
+![267631611-6044cdf1-07b9-421b-a6b0-98dc005f2324.png](assets/267631611-6044cdf1-07b9-421b-a6b0-98dc005f2324.png)
 </details>
 
 <details>
   <summary><b>Add lottery modal</b></summary><br>
 
-![Screenshot 2023-07-10 at 15 06 46](https://github.com/callstack-workshops/abbott-module-3-homework/assets/50460088/e56f250d-251d-43eb-94e5-ee06fece7ece)
+![267631757-e56f250d-251d-43eb-94e5-ee06fece7ece.png](assets/267631757-e56f250d-251d-43eb-94e5-ee06fece7ece.png)
 </details>
 
 <details>
   <summary><b>Add lottery modal form validation</b></summary><br>
 
-![Screenshot 2023-07-10 at 15 08 48](https://github.com/callstack-workshops/abbott-module-3-homework/assets/50460088/783f4ca1-9c3c-411c-8cc7-86736152f283)
+![267631887-783f4ca1-9c3c-411c-8cc7-86736152f283.png](assets/267631887-783f4ca1-9c3c-411c-8cc7-86736152f283.png)
 </details>
 
 <details>
   <summary><b>Add lottery loading state</b></summary><br>
 
-![Screenshot 2023-07-10 at 15 08 48](https://github.com/callstack-workshops/abbott-module-3-homework/assets/50460088/cb7ec061-c586-4466-b8ff-f3eccc5519d1)
+![267632061-cb7ec061-c586-4466-b8ff-f3eccc5519d1.png](assets/267632061-cb7ec061-c586-4466-b8ff-f3eccc5519d1.png)
 </details>
 
 <details>
   <summary><b>Notification after successful action</b></summary><br>
 
-![Screenshot 2023-07-10 at 15 21 53](https://github.com/callstack-workshops/abbott-module-3-homework/assets/50460088/bf80c280-46a6-4aff-ac45-98aa3a4dfdd8)
+![267632188-bf80c280-46a6-4aff-ac45-98aa3a4dfdd8.png](assets/267632188-bf80c280-46a6-4aff-ac45-98aa3a4dfdd8.png)
 </details>
 
 Add lottery feature should have following things implemented:
@@ -196,29 +196,27 @@ Given the UI design implement List lotteries feature.
 <details>
   <summary><b>Fetch and display lottery data</b></summary><br>
 
-![Screenshot 2023-07-11 at 10 37 55](https://github.com/callstack-workshops/abbott-module-3-homework/assets/50460088/3c1eac8e-072a-44e9-8f65-f2a41588fe8e)
-![Screenshot 2023-07-11 at 10 44 59](https://github.com/callstack-workshops/abbott-module-3-homework/assets/50460088/e306725f-128d-4219-9426-6e09c04c093e)
-![Screenshot 2023-07-11 at 10 52 45](https://github.com/callstack-workshops/abbott-module-3-homework/assets/50460088/a700006a-ab52-4ba8-9021-d01e68ca8270)
-
-
+![267632320-3c1eac8e-072a-44e9-8f65-f2a41588fe8e.png](assets/267632320-3c1eac8e-072a-44e9-8f65-f2a41588fe8e.png)
+![267632361-e306725f-128d-4219-9426-6e09c04c093e.png](assets/267632361-e306725f-128d-4219-9426-6e09c04c093e.png)
+![267632406-a700006a-ab52-4ba8-9021-d01e68ca8270.png](assets/267632406-a700006a-ab52-4ba8-9021-d01e68ca8270.png)
 </details>
 
 <details>
   <summary><b>Make lotteries selectable and add register FAB button</b></summary><br>
 
-![Screenshot 2023-07-11 at 10 38 36](https://github.com/callstack-workshops/abbott-module-3-homework/assets/50460088/ac5fd39a-14be-4b09-8077-136ea66f8ebf)
+![267632563-ac5fd39a-14be-4b09-8077-136ea66f8ebf.png](assets/267632563-ac5fd39a-14be-4b09-8077-136ea66f8ebf.png)
 </details>
 
 <details>
   <summary><b>Add Register modal with name input and validation</b></summary><br>
 
-![Screenshot 2023-07-11 at 10 39 26](https://github.com/callstack-workshops/abbott-module-3-homework/assets/50460088/50988024-0da9-46cf-af93-3b5dc5ebe090)
+![267632627-50988024-0da9-46cf-af93-3b5dc5ebe090.png](assets/267632627-50988024-0da9-46cf-af93-3b5dc5ebe090.png)
 </details>
 
 <details>
   <summary><b>Register to selected lotteries and notification message</b></summary><br>
 
-![Screenshot 2023-07-11 at 10 40 41](https://github.com/callstack-workshops/abbott-module-3-homework/assets/50460088/95b60ead-576e-49cb-8510-b0df33b226dc)
+![267632706-95b60ead-576e-49cb-8510-b0df33b226dc.png](assets/267632706-95b60ead-576e-49cb-8510-b0df33b226dc.png)
 
 </details>
 
@@ -241,13 +239,13 @@ Given the UI design implement Filter lotteries feature.
 <details>
   <summary><b>Add text input to filter fetched lotteries</b></summary><br>
 
-![Screenshot 2023-07-11 at 11 02 52](https://github.com/callstack-workshops/abbott-module-3-homework/assets/50460088/fd7a79fb-bd43-4031-99d7-d8f1ed507095)
+![267633613-fd7a79fb-bd43-4031-99d7-d8f1ed507095.png](assets/267633613-fd7a79fb-bd43-4031-99d7-d8f1ed507095.png)
 </details>
 
 <details>
   <summary><b>Handle no search result case</b></summary><br>
 
-![Screenshot 2023-07-11 at 11 08 29](https://github.com/callstack-workshops/abbott-module-3-homework/assets/50460088/46e6c84b-76f1-4e36-9e79-0963b2f802d9)
+![267633722-46e6c84b-76f1-4e36-9e79-0963b2f802d9.png](assets/267633722-46e6c84b-76f1-4e36-9e79-0963b2f802d9.png)
 </details>
 
 Filter lotteries:
