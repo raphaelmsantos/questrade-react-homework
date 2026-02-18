@@ -34,7 +34,6 @@ export async function getAllLotteries(): Promise<Lottery[]> {
     }
 }
 
-
 export async function registerForTheLottery(lotteryId: string, name: string): Promise<{ status: 'Success' }>
 {
     try {
