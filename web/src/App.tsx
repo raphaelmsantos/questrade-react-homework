@@ -1,33 +1,18 @@
 import { Box, Fab, Typography, Button, BottomNavigation, Paper, BottomNavigationAction } from '@mui/material';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import AddLotteryModal from './components/AddLotteryModal';
 import LotteryList from './components/LotteryList';
-import type { Lottery } from './types';
-import { getAllLotteries } from './services/LotteryService';
 import { Add, AppRegistration } from '@mui/icons-material';
 import RegisterForTheLotteryModal from './components/RegisterForTheLotteryModal';
+import useLotteries from './hooks/useLotteries';
 
 function App() {
   const [addLotteryModalOpen, setAddLotteryModalOpen] = useState(false);
   const [registerForTheLotteryModalOpen, setRegisterForTheLotteryModalOpen] = useState(false);
-  const [lotteries, setLotteries] = useState<Array<Lottery>>([]);
-  const [loading, setLoading] = useState(true);
+  const { lotteries, loading, refreshLotteries } = useLotteries();
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
-  useEffect(() => {
-    const fetchLotteries = async () => {
-      try {
-        const data = await getAllLotteries();
-        setLotteries(data);
-      } catch (error) {
-        console.error('Failed to fetch lotteries:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchLotteries();
-  }, []);
+  
 
   const handleSelect = (lotteryId: string) => {
     setSelectedIds((ids) => {
@@ -85,13 +70,8 @@ function App() {
         open={addLotteryModalOpen}
         onClose={() => setAddLotteryModalOpen(false)}
         onSubmit={() => {
-          // handle submit logic here
           // Refresh the lottery list after adding a new lottery
-          setLoading(true);
-          getAllLotteries().then((data) => {
-            setLotteries(data);
-            setLoading(false);
-          });
+          refreshLotteries();
           setAddLotteryModalOpen(false);
         }}
       />
