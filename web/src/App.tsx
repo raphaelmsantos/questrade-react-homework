@@ -35,7 +35,7 @@ function App() {
           left: 0,
           right: 0,
           height: 64,
-          backgroundColor: '#000',
+          backgroundColor: 'background.paper',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -43,10 +43,9 @@ function App() {
           zIndex: 1300,
         }}
       >
-        <Typography variant="h6" sx={{ color: '#2798F5', fontWeight: 700 }}>
+        <Typography variant="h6" sx={{ color: 'primary.main', fontWeight: 700 }}>
           Lotteries
-        </Typography>        
-        
+        </Typography>
       </Box>
 
       <Box sx={{ px: 2, width: '100%', maxWidth: 1200, mx: 'auto' }}>
@@ -57,11 +56,11 @@ function App() {
         )}
       </Box>
       <Box sx={{ position: 'fixed', bottom: 16, right: 16, display: 'flex', flexDirection: 'column', gap: 2, alignItems: 'flex-end' }}>
-        <Fab variant="extended" size="medium" sx={{ backgroundColor: '#2798F5', color: '#000', '&:hover': { backgroundColor: '#1A6FB3' } }} onClick={() => setRegisterForTheLotteryModalOpen(true)} disabled={selectedIds.length === 0}>
+        <Fab variant="extended" size="medium" sx={{ backgroundColor: 'primary.main', color: 'text.primary', '&:hover': { backgroundColor: 'primary.dark' } }} onClick={() => setRegisterForTheLotteryModalOpen(true)} disabled={selectedIds.length === 0}>
           <AppRegistration sx={{ mr: 1 }} />
           Register for the lotteries
         </Fab>
-        <Fab variant="extended" size="small" sx={{ backgroundColor: '#2798F5', color: '#000', '&:hover': { backgroundColor: '#1A6FB3' } }} onClick={() => setAddLotteryModalOpen(true)}>
+        <Fab variant="extended" size="small" sx={{ backgroundColor: 'primary.main', color: 'text.primary', '&:hover': { backgroundColor: 'primary.dark' } }} onClick={() => setAddLotteryModalOpen(true)}>
           <Add sx={{ mr: 1 }} />
           Add Lottery
         </Fab>

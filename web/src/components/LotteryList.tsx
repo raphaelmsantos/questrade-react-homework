@@ -20,9 +20,9 @@ const LotteryList: React.FC<LotteryListProps> = ({ lotteries, selectedIds = null
     return (
         <>
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginBottom: 2 }}>
-            <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', mb: 1 }}>
-                <h2 style={{ color: '#2798F5', fontWeight: 700, margin: 0 }}>Available Lotteries</h2>
-            </Box>
+                <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', mb: 1 }}>
+                    <Box component="h2" sx={{ color: 'primary.main', fontWeight: 700, margin: 0 }}>Available Lotteries</Box>
+                </Box>
 
             <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: 2 }}>
                 <TextField
@@ -32,15 +32,15 @@ const LotteryList: React.FC<LotteryListProps> = ({ lotteries, selectedIds = null
                     sx={{
                         width: 400,
                         borderRadius: 1,
-                        backgroundColor: '#000',
+                        backgroundColor: 'background.paper',
                         '& .MuiOutlinedInput-root': {
-                            '& fieldset': { borderColor: '#2798F5' },
-                            '&:hover fieldset': { borderColor: '#2798F5' },
-                            '&.Mui-focused fieldset': { borderColor: '#2798F5' }
+                            '& fieldset': { borderColor: (theme: any) => theme.palette.primary.main },
+                            '&:hover fieldset': { borderColor: (theme: any) => theme.palette.primary.main },
+                            '&.Mui-focused fieldset': { borderColor: (theme: any) => theme.palette.primary.main }
                         },
-                        '& .MuiInputBase-input': { color: '#2798F5' },
-                        '& .MuiInputBase-input::placeholder': { color: '#2798F5', opacity: 0.7 },
-                        '& .MuiSvgIcon-root': { color: '#2798F5' }
+                        '& .MuiInputBase-input': { color: 'primary.main' },
+                        '& .MuiInputBase-input::placeholder': { color: 'primary.main', opacity: 0.7 },
+                        '& .MuiSvgIcon-root': { color: 'primary.main' }
                     }}
                     InputProps={{
                         endAdornment: (
@@ -54,7 +54,7 @@ const LotteryList: React.FC<LotteryListProps> = ({ lotteries, selectedIds = null
 
             {filteredLotteries.length === 0 && (
                 <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: 4 }}>
-                    <Box sx={{ color: '#d1d5db', textAlign: 'center' }}>
+                    <Box sx={{ color: 'text.secondary', textAlign: 'center' }}>
                         No search results for "{filter}"
                     </Box>
                 </Box>

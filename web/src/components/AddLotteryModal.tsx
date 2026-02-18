@@ -5,21 +5,9 @@ import * as Yup from 'yup';
 import { createLottery } from "../services/LotteryService";
 
 const addLotterySchema = Yup.object({
-  name: Yup.string().min(4).required(),
-  prize: Yup.string().min(4).required(),
+    name: Yup.string().min(4).required(),
+    prize: Yup.string().min(4).required(),
 });
-
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: '#000',
-    border: '2px solid #2798F5',
-    boxShadow: 24,
-    p: 4,
-};
 
 interface Props {
     open: boolean;
@@ -63,8 +51,18 @@ export default function AddLotteryModal({ open, onClose, onSubmit }: Props) {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
         >
-            <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ color: '#2798F5', fontWeight: 700 }}>
+            <Box sx={(theme) => ({
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: 400,
+                bgcolor: theme.palette.background.paper,
+                border: `2px solid ${theme.palette.primary.main}`,
+                boxShadow: 24,
+                p: 4,
+            })}>
+                <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ color: 'primary.main', fontWeight: 700 }}>
                     Add a new Lottery
                 </Typography>
                 <form onSubmit={formik.handleSubmit}>
@@ -77,16 +75,16 @@ export default function AddLotteryModal({ open, onClose, onSubmit }: Props) {
                     name="name"
                     value={formik.values.name}
                     onChange={formik.handleChange}
-                    sx={{
+                    sx={(theme) => ({
                         '& .MuiOutlinedInput-root': {
-                            '& fieldset': { borderColor: '#2798F5' },
-                            '&:hover fieldset': { borderColor: '#2798F5' },
-                            '&.Mui-focused fieldset': { borderColor: '#2798F5' },
+                            '& fieldset': { borderColor: theme.palette.primary.main },
+                            '&:hover fieldset': { borderColor: theme.palette.primary.main },
+                            '&.Mui-focused fieldset': { borderColor: theme.palette.primary.main },
                         },
-                        '& .MuiInputLabel-root': { color: '#2798F5' },
-                        '& .MuiInputLabel-root.Mui-focused': { color: '#2798F5' },
-                        '& .MuiOutlinedInput-input': { color: '#2798F5' },
-                    }}
+                        '& .MuiInputLabel-root': { color: theme.palette.primary.main },
+                        '& .MuiInputLabel-root.Mui-focused': { color: theme.palette.primary.main },
+                        '& .MuiOutlinedInput-input': { color: theme.palette.primary.main },
+                    })}
                     error={Boolean(formik.errors.name && formik.touched.name)}
                     helperText={formik.touched.name && formik.errors.name}
                 />
@@ -99,16 +97,16 @@ export default function AddLotteryModal({ open, onClose, onSubmit }: Props) {
                     name="prize"
                     value={formik.values.prize}
                     onChange={formik.handleChange}
-                    sx={{
+                    sx={(theme) => ({
                         '& .MuiOutlinedInput-root': {
-                            '& fieldset': { borderColor: '#2798F5' },
-                            '&:hover fieldset': { borderColor: '#2798F5' },
-                            '&.Mui-focused fieldset': { borderColor: '#2798F5' },
+                            '& fieldset': { borderColor: theme.palette.primary.main },
+                            '&:hover fieldset': { borderColor: theme.palette.primary.main },
+                            '&.Mui-focused fieldset': { borderColor: theme.palette.primary.main },
                         },
-                        '& .MuiInputLabel-root': { color: '#2798F5' },
-                        '& .MuiInputLabel-root.Mui-focused': { color: '#2798F5' },
-                        '& .MuiOutlinedInput-input': { color: '#2798F5' },
-                    }}
+                        '& .MuiInputLabel-root': { color: theme.palette.primary.main },
+                        '& .MuiInputLabel-root.Mui-focused': { color: theme.palette.primary.main },
+                        '& .MuiOutlinedInput-input': { color: theme.palette.primary.main },
+                    })}
                     error={Boolean(formik.errors.prize && formik.touched.prize)}
                     helperText={formik.touched.prize && formik.errors.prize}
                 />
@@ -117,7 +115,7 @@ export default function AddLotteryModal({ open, onClose, onSubmit }: Props) {
                     type="submit"
                     disabled={loading}
                     fullWidth
-                    sx={{ backgroundColor: '#2798F5', color: '#000', '&:hover': { backgroundColor: '#2798F5' } }}
+                    sx={{ backgroundColor: 'primary.main', color: 'text.primary', '&:hover': { backgroundColor: 'primary.main' } }}
                 >
                     {loading ? 'Submitting...' : 'Submit'}
                 </Button>
