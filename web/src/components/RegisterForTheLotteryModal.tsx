@@ -16,7 +16,7 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 400,
     bgcolor: '#000',
-    border: '2px solid #DFFF00',
+    border: '2px solid #2798F5',
     boxShadow: 24,
     p: 4,
 };
@@ -59,12 +59,12 @@ export default function RegisterForTheLotteryModal({ open, onClose, onSubmit, lo
             aria-describedby="modal-modal-description"
         >
             <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ color: '#DFFF00', fontWeight: 700 }}>
-                    Register for the Lottery
+                <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ color: '#2798F5', fontWeight: 700 }}>
+                    Register for the lotteries
                 </Typography>
                 <form onSubmit={formik.handleSubmit}>
                 <TextField
-                    label="Lottery Name"
+                    label="Your Name"
                     variant="outlined"
                     fullWidth
                     margin="normal"
@@ -74,13 +74,13 @@ export default function RegisterForTheLotteryModal({ open, onClose, onSubmit, lo
                     onChange={formik.handleChange}
                     sx={{
                         '& .MuiOutlinedInput-root': {
-                            '& fieldset': { borderColor: '#DFFF00' },
-                            '&:hover fieldset': { borderColor: '#cfef00' },
-                            '&.Mui-focused fieldset': { borderColor: '#DFFF00' },
+                            '& fieldset': { borderColor: '#2798F5' },
+                            '&:hover fieldset': { borderColor: '#2798F5' },
+                            '&.Mui-focused fieldset': { borderColor: '#2798F5' },
                         },
-                        '& .MuiInputLabel-root': { color: '#DFFF00' },
-                        '& .MuiInputLabel-root.Mui-focused': { color: '#DFFF00' },
-                        '& .MuiOutlinedInput-input': { color: '#DFFF00' },
+                        '& .MuiInputLabel-root': { color: '#2798F5' },
+                        '& .MuiInputLabel-root.Mui-focused': { color: '#2798F5' },
+                        '& .MuiOutlinedInput-input': { color: '#2798F5  ' },
                     }}
                     error={Boolean(formik.errors.name && formik.touched.name)}
                     helperText={formik.touched.name && formik.errors.name}
@@ -90,7 +90,7 @@ export default function RegisterForTheLotteryModal({ open, onClose, onSubmit, lo
                     type="submit"
                     disabled={loading}
                     fullWidth
-                    sx={{ backgroundColor: '#DFFF00', color: '#000', '&:hover': { backgroundColor: '#cfef00' } }}
+                    sx={{ backgroundColor: '#2798F5', color: '#000', '&:hover': { backgroundColor: '#cfef00' } }}
                 >
                     {loading ? 'Submitting...' : 'Submit'}
                 </Button>

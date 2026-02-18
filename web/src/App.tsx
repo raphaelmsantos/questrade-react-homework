@@ -1,4 +1,4 @@
-import { Box, Fab, Typography, Button, BottomNavigation, Paper, BottomNavigationAction, Snackbar } from '@mui/material';
+import { Box, Fab, Typography, Snackbar } from '@mui/material';
 import { useState } from 'react';
 import AddLotteryModal from './components/AddLotteryModal';
 import LotteryList from './components/LotteryList';
@@ -59,7 +59,7 @@ function App() {
       <Box sx={{ position: 'fixed', bottom: 16, right: 16, display: 'flex', flexDirection: 'column', gap: 2, alignItems: 'flex-end' }}>
         <Fab variant="extended" size="medium" sx={{ backgroundColor: '#2798F5', color: '#000', '&:hover': { backgroundColor: '#1A6FB3' } }} onClick={() => setRegisterForTheLotteryModalOpen(true)} disabled={selectedIds.length === 0}>
           <AppRegistration sx={{ mr: 1 }} />
-          Register for the Lottery
+          Register for the lotteries
         </Fab>
         <Fab variant="extended" size="small" sx={{ backgroundColor: '#2798F5', color: '#000', '&:hover': { backgroundColor: '#1A6FB3' } }} onClick={() => setAddLotteryModalOpen(true)}>
           <Add sx={{ mr: 1 }} />
@@ -70,7 +70,6 @@ function App() {
         open={addLotteryModalOpen}
         onClose={() => setAddLotteryModalOpen(false)}
         onSubmit={() => {
-          // Refresh the lottery list after adding a new lottery
           refreshLotteries();
           setAddLotteryModalOpen(false);
           setNotificationMessage('Lottery added successfully!');
@@ -83,9 +82,8 @@ function App() {
           onClose={() => setRegisterForTheLotteryModalOpen(false)}
           lotteries={lotteries.filter((lottery) => selectedIds.includes(lottery.id))}
           onSubmit={() => {
-            // handle submit logic here
             setRegisterForTheLotteryModalOpen(false);
-            setNotificationMessage('Registered for the lottery successfully!');
+            setNotificationMessage('Registered for the lotteries successfully!');
             setNotificationOpen(true);
           }}
         />
