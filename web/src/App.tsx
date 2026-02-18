@@ -1,4 +1,4 @@
-import { Box, Fab, Typography, Button, BottomNavigation, Paper, BottomNavigationAction } from '@mui/material';
+import { Box, Fab, Typography, Button, BottomNavigation, Paper, BottomNavigationAction, Snackbar } from '@mui/material';
 import { useState } from 'react';
 import AddLotteryModal from './components/AddLotteryModal';
 import LotteryList from './components/LotteryList';
@@ -11,8 +11,8 @@ function App() {
   const [registerForTheLotteryModalOpen, setRegisterForTheLotteryModalOpen] = useState(false);
   const { lotteries, loading, refreshLotteries } = useLotteries();
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
-
-  
+  const [notificationOpen, setNotificationOpen] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState(''); 
 
   const handleSelect = (lotteryId: string) => {
     setSelectedIds((ids) => {
@@ -73,6 +73,8 @@ function App() {
           // Refresh the lottery list after adding a new lottery
           refreshLotteries();
           setAddLotteryModalOpen(false);
+          setNotificationMessage('Lottery added successfully!');
+          setNotificationOpen(true);
         }}
       />
       {selectedIds.length > 0 && (
@@ -83,10 +85,20 @@ function App() {
           onSubmit={() => {
             // handle submit logic here
             setRegisterForTheLotteryModalOpen(false);
+            setNotificationMessage('Registered for the lottery successfully!');
+            setNotificationOpen(true);
           }}
         />
       )}
+      <Snackbar
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        open={notificationOpen}
+        message={notificationMessage}
+        autoHideDuration={3000}
+        onClose={() => setNotificationOpen(false)}
+      />
     </div>
+    
   );
 }
 
