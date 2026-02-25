@@ -8,7 +8,7 @@ interface LotteryCardProps {
     onSelect?: () => void;
 }
 
-export const LotteryCard: React.FC<LotteryCardProps> = ({ lottery, selected = false, onSelect }) => {
+export const LotteryCard = ({ lottery, selected = false, onSelect } : LotteryCardProps) => {
     const theme = useTheme();
     const baseClasses = 'rounded-lg p-4 shadow-md';
     const cardStyle: React.CSSProperties = {

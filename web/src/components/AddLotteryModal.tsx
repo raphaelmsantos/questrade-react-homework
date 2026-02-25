@@ -27,14 +27,19 @@ export default function AddLotteryModal({ open, onClose, onSubmit }: Props) {
      },     
      onSubmit: async (values) => {
         setLoading(true);
-        await createLottery({
-                name: formik.values.name,
-                prize: formik.values.prize,
+        try { 
+            await createLottery({
+                name: values.name,
+                prize: values.prize,
                 type: 'simple',
-            }
-        );      
-        setLoading(false);
-        onSubmit();
+            });
+            setLoading(false);
+            onSubmit();
+        } catch (error) {
+            setError(error instanceof Error ? error.message : 'An unknown error occurred');
+        } finally {
+            setLoading(false);
+        }
      },
    });  
 

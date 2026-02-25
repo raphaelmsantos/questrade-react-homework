@@ -38,12 +38,19 @@ export default function RegisterForTheLotteryModal({ open, onClose, onSubmit, lo
        name: '',
      },     
       onSubmit: async (values) => {
+        try { 
           setLoading(true);
-          Promise.all(lotteries.map((lottery) => registerForTheLottery(lottery.id, formik.values.name)))          
+          await Promise.all(lotteries.map((lottery) => registerForTheLottery(lottery.id, formik.values.name)))          
           setLoading(false);
           onSubmit();
+        } catch (error) {
+          setError(error instanceof Error ? error.message : 'An unknown error occurred');
+        } finally {
+          setLoading(false);
+        }
       },
-   });  
+      
+    });  
 
     function handleClose(event: {}, reason: "backdropClick" | "escapeKeyDown"): void {
         if (reason === "backdropClick" || reason === "escapeKeyDown") {
