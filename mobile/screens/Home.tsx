@@ -63,9 +63,9 @@ export default function HomeScreen() {
         selectedIds={selectedIds}
         registeredIds={registeredIds}
         onSelect={handleSelect}
-        onRegisterPress={() => setRegisterModalVisible(true)}
         onRefresh={refreshLotteries}
         refreshing={loading}
+        onRegisterPress={() => setRegisterModalVisible(true)}
       />
       <RegisterModal
         visible={registerModalVisible}

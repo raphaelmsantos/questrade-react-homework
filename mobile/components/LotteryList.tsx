@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   StyleSheet,
   FlatList,
   ActivityIndicator,
+  Animated,
 } from 'react-native';
 import { LotteryCard } from './LotteryCard';
 import type { Lottery } from '../types';
@@ -22,6 +23,9 @@ interface LotteryListProps {
   refreshing?: boolean;
 }
 
+const HEADER_FULL_HEIGHT = 120;
+const SCROLL_RANGE = 120;
+
 export default function LotteryList({
   lotteries,
   loading = false,
@@ -33,6 +37,32 @@ export default function LotteryList({
   refreshing = false,
 }: LotteryListProps) {
   const [filter, setFilter] = useState('');
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const hasSelection = (selectedIds?.length ?? 0) > 0;
+  const isRegisterDisabled = !hasSelection;
+
+  const headerHeight = scrollY.interpolate({
+    inputRange: [0, SCROLL_RANGE],
+    outputRange: [HEADER_FULL_HEIGHT, 0],
+    extrapolate: 'clamp',
+  });
+
+  const headerOpacity = scrollY.interpolate({
+    inputRange: [0, SCROLL_RANGE],
+    outputRange: [1, 0],
+    extrapolate: 'clamp',
+  });
+
+  const headerScale = scrollY.interpolate({
+    inputRange: [0, SCROLL_RANGE],
+    outputRange: [1, 0.75],
+    extrapolate: 'clamp',
+  });
+
+  const onListScroll = Animated.event(
+    [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+    { useNativeDriver: false }
+  );
 
   const filteredLotteries = lotteries.filter(
     (lottery) =>
@@ -54,9 +84,6 @@ export default function LotteryList({
     );
   }
 
-  const hasSelection = (selectedIds?.length ?? 0) > 0;
-  const isRegisterDisabled = !hasSelection;
-
   const isInitialLoad = loading && lotteries.length === 0;
 
   if (isInitialLoad) {
@@ -70,8 +97,7 @@ export default function LotteryList({
 
   return (
     <View style={styles.container}>
-      <View style={styles.titleRow}>
-        <Text style={styles.heading}>Lotteries 🎲</Text>
+      <View style={styles.registerRow}>
         <Pressable
           style={({ pressed }) => [
             styles.registerButton,
@@ -84,19 +110,33 @@ export default function LotteryList({
           <Text style={styles.registerButtonText}>Register</Text>
         </Pressable>
       </View>
-
-      <View style={styles.filterWrapper}>
-        <TextInput
-          style={styles.filterInput}
-          value={filter}
-          onChangeText={setFilter}
-          placeholder="Filter lotteries"
-          placeholderTextColor="#999"
-        />
-        <View style={styles.filterIconWrap}>
-          <Text style={styles.filterIcon}>⌕</Text>
-        </View>
-      </View>
+      <Animated.View style={[styles.headerCollapse, { height: headerHeight }]}>
+        <Animated.View
+          style={[
+            styles.headerInner,
+            {
+              opacity: headerOpacity,
+              transform: [{ scale: headerScale }],
+            },
+          ]}
+        >
+          <View style={styles.titleRow}>
+            <Text style={styles.heading}>Lotteries 🎲</Text>
+          </View>
+          <View style={styles.filterWrapper}>
+            <TextInput
+              style={styles.filterInput}
+              value={filter}
+              onChangeText={setFilter}
+              placeholder="Filter lotteries"
+              placeholderTextColor="#999"
+            />
+            <View style={styles.filterIconWrap}>
+              <Text style={styles.filterIcon}>⌕</Text>
+            </View>
+          </View>
+        </Animated.View>
+      </Animated.View>
 
       {filteredLotteries.length === 0 ? (
         <View style={styles.empty}>
@@ -112,6 +152,8 @@ export default function LotteryList({
           keyExtractor={(item) => item.id}
           renderItem={renderItem}
           contentContainerStyle={styles.listContent}
+          onScroll={onListScroll}
+          scrollEventThrottle={16}
           onRefresh={onRefresh}
           refreshing={refreshing ?? loading}
         />
@@ -126,26 +168,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 16,
   },
-  centered: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 12,
-  },
-  loadingText: {
-    color: '#666',
-    fontSize: 14,
-  },
-  titleRow: {
+  registerRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: 'flex-end',
     marginBottom: 12,
-  },
-  heading: {
-    color: '#6200ee',
-    fontWeight: '700',
-    fontSize: 20,
   },
   registerButton: {
     backgroundColor: '#6200ee',
@@ -164,6 +190,23 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 14,
     fontWeight: '600',
+  },
+  headerCollapse: {
+    overflow: 'hidden',
+  },
+  headerInner: {
+    width: '100%',
+  },
+  titleRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  heading: {
+    color: '#6200ee',
+    fontWeight: '700',
+    fontSize: 20,
   },
   filterWrapper: {
     position: 'relative',
@@ -190,6 +233,16 @@ const styles = StyleSheet.create({
   filterIcon: {
     fontSize: 30,
     color: '#6200ee',
+  },
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 12,
+  },
+  loadingText: {
+    color: '#666',
+    fontSize: 14,
   },
   listContent: {
     paddingBottom: 100,
