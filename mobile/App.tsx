@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './screens/Home';
+import AddLotteryScreen from './screens/AddLottery';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+function RootStack() {
   return (
-    <View style={styles.container}>
-      <Text>Raphael's app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="AddLottery" component={AddLotteryScreen} />
+    </Stack.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <SafeAreaProvider>
+      <NavigationContainer> 
+        <RootStack />
+      </NavigationContainer>
+    </SafeAreaProvider>
+      
+  );
+}
+
+
+
