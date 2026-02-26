@@ -137,7 +137,7 @@ export default function AddLotteryScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f2f2f2',
   },
   scrollContent: {
     padding: 24,

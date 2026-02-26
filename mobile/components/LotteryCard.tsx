@@ -5,25 +5,35 @@ import type { Lottery } from '../types';
 interface LotteryCardProps {
   lottery: Lottery;
   selected?: boolean;
+  registered?: boolean;
   onSelect?: () => void;
 }
 
 export function LotteryCard({
   lottery,
   selected = false,
+  registered = false,
   onSelect,
 }: LotteryCardProps) {
+  const isDisabled = registered;
+
   return (
     <Pressable
       style={({ pressed }) => [
         styles.card,
         selected && styles.cardSelected,
-        pressed && styles.cardPressed,
+        registered && styles.cardRegistered,
+        !isDisabled && pressed && styles.cardPressed,
       ]}
-      onPress={onSelect}
+      onPress={isDisabled ? undefined : onSelect}
+      disabled={isDisabled}
     >
-      <Text style={styles.title}>{lottery.name}</Text>
-      <Text style={styles.prize}>Prize: {lottery.prize}</Text>
+      <Text style={[styles.title, registered && styles.textMuted]}>
+        {lottery.name}
+      </Text>
+      <Text style={[styles.prize, registered && styles.textMuted]}>
+        Prize: {lottery.prize}
+      </Text>
     </Pressable>
   );
 }
@@ -46,6 +56,11 @@ const styles = StyleSheet.create({
   cardSelected: {
     borderColor: '#6200ee',
   },
+  cardRegistered: {
+    backgroundColor: '#e0e0e0',
+    borderColor: '#bdbdbd',
+    opacity: 1,
+  },
   cardPressed: {
     opacity: 0.9,
   },
@@ -58,5 +73,8 @@ const styles = StyleSheet.create({
     color: '#666',
     marginTop: 8,
     fontSize: 14,
+  },
+  textMuted: {
+    color: '#757575',
   },
 });

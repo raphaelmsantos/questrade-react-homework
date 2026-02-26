@@ -3,6 +3,7 @@ import {
   View,
   Text,
   TextInput,
+  Pressable,
   StyleSheet,
   FlatList,
   ActivityIndicator,
@@ -14,7 +15,9 @@ interface LotteryListProps {
   lotteries: Lottery[];
   loading?: boolean;
   selectedIds?: string[] | null;
+  registeredIds?: string[];
   onSelect?: (id: string) => void;
+  onRegisterPress?: () => void;
   onRefresh?: () => void;
   refreshing?: boolean;
 }
@@ -23,7 +26,9 @@ export default function LotteryList({
   lotteries,
   loading = false,
   selectedIds = null,
+  registeredIds = [],
   onSelect,
+  onRegisterPress,
   onRefresh,
   refreshing = false,
 }: LotteryListProps) {
@@ -36,16 +41,21 @@ export default function LotteryList({
   );
 
   function renderItem({ item }: { item: Lottery }) {
+    const isRegistered = registeredIds?.includes(item.id);
     return (
       <View style={styles.cardWrapper}>
         <LotteryCard
           lottery={item}
           selected={selectedIds?.includes(item.id)}
+          registered={isRegistered}
           onSelect={onSelect ? () => onSelect(item.id) : undefined}
         />
       </View>
     );
   }
+
+  const hasSelection = (selectedIds?.length ?? 0) > 0;
+  const isRegisterDisabled = !hasSelection;
 
   const isInitialLoad = loading && lotteries.length === 0;
 
@@ -60,7 +70,20 @@ export default function LotteryList({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Available Lotteries</Text>
+      <View style={styles.titleRow}>
+        <Text style={styles.heading}>Lotteries 🎲</Text>
+        <Pressable
+          style={({ pressed }) => [
+            styles.registerButton,
+            isRegisterDisabled && styles.registerButtonDisabled,
+            !isRegisterDisabled && pressed && styles.registerButtonPressed,
+          ]}
+          onPress={onRegisterPress}
+          disabled={isRegisterDisabled}
+        >
+          <Text style={styles.registerButtonText}>Register</Text>
+        </Pressable>
+      </View>
 
       <View style={styles.filterWrapper}>
         <TextInput
@@ -101,6 +124,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 16,
+    paddingTop: 16,
   },
   centered: {
     flex: 1,
@@ -112,11 +136,34 @@ const styles = StyleSheet.create({
     color: '#666',
     fontSize: 14,
   },
+  titleRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
   heading: {
     color: '#6200ee',
     fontWeight: '700',
     fontSize: 20,
-    marginBottom: 12,
+  },
+  registerButton: {
+    backgroundColor: '#6200ee',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 8,
+  },
+  registerButtonDisabled: {
+    backgroundColor: '#b0b0b0',
+    opacity: 0.8,
+  },
+  registerButtonPressed: {
+    opacity: 0.8,
+  },
+  registerButtonText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '600',
   },
   filterWrapper: {
     position: 'relative',
