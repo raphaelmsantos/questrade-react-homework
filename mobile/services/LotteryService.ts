@@ -20,3 +20,11 @@ export async function createLottery(
   }
   return response.json();
 }
+
+export async function getAllLotteries(): Promise<Lottery[]> {
+  const response = await fetch(`${API_URL}/lotteries`);
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  return response.json();
+}
